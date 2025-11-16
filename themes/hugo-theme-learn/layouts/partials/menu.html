@@ -3,7 +3,8 @@
   class="{{if $.Site.Params.showVisitedLinks }}showVisitedLinks{{end}}"
 >
   {{ $currentNode := . }} {{ $showvisitedlinks := .Site.Params.showVisitedLinks
-  }}
+  }} 
+  {{ $showhidden := .Site.Params.showHidden }}
   <div id="header-wrapper">
     <div id="header">{{ partial "logo.html" . }}</div>
     {{if not .Site.Params.disableSearch}} {{ partial "search.html" . }} {{end}}
@@ -13,10 +14,10 @@
     <ul class="topics">
       {{if eq .Site.Params.ordersectionsby "title"}} {{range
       .Site.Home.Sections.ByTitle}} {{ template "section-tree-nav" dict "sect" .
-      "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}} {{end}}
+      "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "showhidden" $showhidden}} {{end}}
       {{else}} {{range .Site.Home.Sections.ByWeight}} {{ template
       "section-tree-nav" dict "sect" . "currentnode" $currentNode
-      "showvisitedlinks" $showvisitedlinks}} {{end}} {{end}}
+      "showvisitedlinks" $showvisitedlinks "showhidden" $showhidden}} {{end}} {{end}}
     </ul>
 
     {{ $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle}} {{with
@@ -132,10 +133,10 @@ $currentNode.File }}{{ $currentFileUniqueID = .UniqueID }}{{ end }} {{with
     .Site.Params.ordersectionsby "title"}} {{ range $pages.ByTitle }} {{ if and
     .Params.hidden (not $.showhidden) }} {{else}} {{ template "section-tree-nav"
     dict "sect" . "currentnode" $currentNode "showvisitedlinks"
-    $showvisitedlinks }} {{end}} {{ end }} {{else}} {{ range $pages.ByWeight }}
+    $showvisitedlinks "showhidden" .showhidden }} {{end}} {{ end }} {{else}} {{ range $pages.ByWeight }}
     {{ if and .Params.hidden (not $.showhidden) }} {{else}} {{ template
     "section-tree-nav" dict "sect" . "currentnode" $currentNode
-    "showvisitedlinks" $showvisitedlinks }} {{end}} {{ end }} {{end}}
+    "showvisitedlinks" $showvisitedlinks "showhidden" .showhidden }} {{end}} {{ end }} {{end}}
   </ul>
   {{ end }}
 </li>
