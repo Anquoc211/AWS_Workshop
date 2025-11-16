@@ -7,32 +7,32 @@ pre: "<b> 1. </b>"
 
 # Worklog
 
-## Tổng quan
+## Overview
 
-Đây là worklog ghi lại quá trình học AWS từ ngày 8/9/2025 đến 22/10/2025 (33 ngày làm việc).
+This is a worklog documenting the AWS learning process from September 9, 2025, to December 22, 2025 (33 working days).
 
-### Cấu trúc
+### Structure
 
-Worklog được tổ chức theo **tuần**, mỗi tuần có **5 ngày làm việc** (Thứ Hai đến Thứ Sáu).
+The worklog is organized by **week**, with each week consisting of **5 working days** (Monday to Friday).
 
-### Tiến độ
+### Progress
 
-- ✅ **Week 1** (8-12/9): Cloud Computing Fundamentals
-- ✅ **Week 2** (15-19/9): AWS Networking Services
-- ✅ **Week 3** (22-26/9): AWS Compute Services
-- ✅ **Week 4** (29/9-3/10): AWS Storage Services
-- ✅ **Week 5** (6-10/10): AWS Security & Identity
-- ✅ **Week 6** (13-17/10): AWS Database Services
-- 🔄 **Week 7** (20-22/10): Advanced Topics (3 ngày)
+- ✅ **Week 1** (Sept 8-12): Cloud Computing Fundamentals
+- ✅ **Week 2** (Sept 15-19): AWS Networking Services
+- ✅ **Week 3** (Sept 22-26): AWS Compute Services
+- ✅ **Week 4** (Sept 29-Oct 3): AWS Storage Services
+- ✅ **Week 5** (Oct 6-10): AWS Security & Identity
+- ✅ **Week 6** (Oct 13-17): AWS Database Services
+- 🔄 **Week 7** (Oct 20-22): Advanced Topics (3 days)
 
-### Thống kê
+### Statistics
 
-- **Tổng số ngày:** 33 ngày làm việc
-- **Tổng số tuần:** 6 tuần đầy đủ + 3 ngày
-- **Tổng số labs:** 25+ hands-on labs
-- **Chủ đề chính:** 7 domains (Cloud Fundamentals, Networking, Compute, Storage, Security, Database, Advanced)
+- **Total days:** 33 working days
+- **Total weeks:** 6 full weeks + 3 days
+- **Total labs:** 25+ hands-on labs
+- **Main topics:** 7 domains (Cloud Fundamentals, Networking, Compute, Storage, Security, Database, Advanced)
 
-### Nội dung chính
+### Main Content
 
 1. **Cloud Computing Fundamentals**
    - AWS basics, infrastructure, management tools
