@@ -1,108 +1,247 @@
 ---
 title: "Bản đề xuất"
-date: "2025-09-09T15:44:00+07:00"
+date: "2025-10-10T15:44:00+07:00"
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# **Thư Viện Online - Nền Tảng Nội Dung Serverless Cho Nhóm Nhỏ**
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+## **1. Tổng quan điều hành**
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+Dự án **Thư Viện Online** nhằm xây dựng một nền tảng serverless, **chi phí thấp** để lưu trữ và phân phối nội dung (PDF/ePub) cho một nhóm người dùng nhỏ (ban đầu **~100 người, n**hóm người dùng gồm sinh viên/lab cần chia sẻ tài liệu nghiên cứu nội bộ có kiểm duyệt). Giải pháp này ưu tiên tính bảo mật, quy trình duyệt nội dung (Admin Approval), và chi phí vận hành **minh bạch, tuyến tính** khi mở rộng. Kiến trúc sử dụng **AWS Serverless** hoàn toàn (Amplify, Cognito, API Gateway, Lambda, S3, CloudFront, DynamoDB). Chi phí dự kiến cho MVP (không tính Free Tier) **≈ $9.80/tháng**, đảm bảo khả năng mở rộng lên 5.000 đến 50.000 người dùng với chi phí dễ dự đoán.
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+## **2. Vấn đề**
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+### **Vấn đề là gì?**
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+Tài liệu và sách bị phân tán; thiếu một hệ thống **truyền tải nội dung an toàn** và có **kiểm soát truy cập**; quy trình thêm hoặc **kiểm duyệt nội dung** tốn thời gian và nhiều vấn đề liên quan đến pháp lý.
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+### Giải pháp
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+Xây dựng một pipeline serverless trên AWS: Người dùng tải lên qua **Presigned PUT URL** (tới S3 tạm); Admin phê duyệt → Lambda di chuyển file đến thư mục công khai (nhưng được bảo vệ); Người đọc truy cập qua **Signed GET URL** (từ CloudFront/CDN) để đảm bảo tốc độ và kiểm soát truy cập.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+### Lợi ích và Tỷ suất hoàn vốn
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+- **Giá trị kinh doanh:** Tập trung hóa nội dung; kiểm soát chất lượng qua quy trình duyệt; triển khai nhanh chóng với CI/CD.
+- **Lợi ích kỹ thuật:** Chi phí vận hành thấp (**≈ $9.80/tháng** ở MVP, không tính Free Tier); kiến trúc Serverless có thể **mở rộng quy mô lớn (scale) dễ dàng**; bảo mật truy cập nội dung.
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+---
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+## **3. Kiến trúc giải pháp**
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+### **A. High-level**
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+![A) High level](/images/2-Proposal/Architect.jpeg)
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+### **B. Luồng xử lý yêu cầu**
+![B) Request flow](/images/2-Proposal/Request_flow.jpeg)
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+### **Dịch vụ AWS Sử Dụng**
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+| Dịch vụ | Vai trò chính | Hoạt động cụ thể |
+| --- | --- | --- |
+| **Amplify Hosting** | CI/CD + FE Hosting | Build & Deploy Next.js, quản lý domain |
+| **Cognito** | Authentication | Đăng ký/Đăng nhập, cấp JWT, refresh token |
+| **API Gateway** | Entry point API | Nhận request, xác thực JWT, route đến Lambda |
+| **Lambda** | Business Logic | Xử lý upload, duyệt, tạo signed URL, ghi metadata |
+| **S3** | Object Storage | Lưu file gốc, file đã duyệt, được download qua Cloudfront Signed URL |
+| **CloudFront** | CDN | Phân phối nhanh nội dung, chặn direct access qua OAC |
+| **DynamoDB** | Database | Lưu metadata (tên sách, uploader, trạng thái duyệt) |
+| **Route 53** | DNS | Trỏ domain đến Amplify Hosting, API Gateway, CloudFront |
+| **CloudWatch** | Monitoring | Lưu log Lambda, cảnh báo lỗi hoặc chi phí bất thường |
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+> Tìm kiếm (Search):
+> 
+- Tìm kiếm đơn giản theo trường (VD: tên sách, tác giả), sử dụng **DynamoDB GSIs** cho các thuộc tính này và query theo GSI.
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+### **Luồng xử lý yêu cầu**
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+- **User Upload:** Presigned PUT tới S3 thư mục `uploads/`.
+- **Admin Approval:** Lambda copy file từ `uploads/` sang `public/books/` khi được duyệt.
+- **Reader Security:** CloudFront sử dụng **Origin Access Control (OAC)** để chặn truy cập trực tiếp S3 và chỉ cho phép đọc qua **Signed URL** (ngắn hạn) do Lambda tạo ra.
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+### **Kiến trúc tìm kiếm**
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+- **Tìm kiếm đơn giản:**
+    - Thiết kế **GSI** cho `title` và `author` (ví dụ: `GSI1: PK=TITLE#{normalizedTitle}, SK=BOOK#{bookId}`; `GSI2: PK=AUTHOR#{normalizedAuthor}, SK=BOOK#{bookId}`).
+    - Thêm endpoint `GET /search?title=...&author=...` để query theo GSI thay vì `Scan`.
+
+![Search Architecture](/images/2-Proposal/SearchArchitecture.jpeg)
+
+### **Phân quyền Admin**
+
+- Sử dụng **Cognito User Groups** với một nhóm `Admins` trong User Pool.
+- Khi Admin đăng nhập, JWT sẽ chứa `cognito:groups: ["Admins"]`.
+- Các Lambda thuộc nghiệp vụ Admin (ví dụ `approveBook`, `takedownBook`) phải kiểm tra claim này; nếu thiếu group, trả `403 Forbidden`.
+- Có thể dùng **JWT Authorizer (API Gateway HTTP API)** để xác thực, phần phân quyền chi tiết xử lý trong Lambda dựa trên claim.
+
+---
+
+## **4. Triển khai Kỹ Thuật**
+
+### **Triển khai**
+
+1. **Thiết kế & IaC (Infra-as-Code):** Xây dựng các stack CDK (Cognito, DDB, S3, Amplify, Lambda, API).
+2. **Flow Upload & Duyệt:** Triển khai Presigned PUT, lưu metadata (trạng thái `pending`), và logic Admin duyệt (copy file).
+3. **Flow Đọc Sách:** Triển khai endpoint Signed GET, và giao diện đọc (FE stream qua CloudFront).
+4. **Vận hành (Ops):** Thiết lập logs CloudWatch (retention ngắn), cảnh báo ngân sách (Budget Alerts), hardening IAM.
+5. **Search:**
+    - MVP: thêm GSI cho `title`, `author` và endpoint `GET /search` query theo GSI.
+
+### **Yêu cầu Kỹ Thuật**
+
+- Sử dụng **CDK** để định nghĩa toàn bộ hạ tầng.
+- API Gateway phải là **HTTP API** để tối ưu chi phí.
+- Lambda (Python) xử lý logic nghiệp vụ và tương tác DynamoDB/S3.
+- S3 Bucket Policy phải **chặn truy cập công khai** và chỉ cho phép CloudFront OAC.
+
+---
+
+## **5. Lộ trình và các mốc tiến độ**
+
+---
+
+### Lộ trình Dự án
+
+### Nền tảng & Xác thực (Tuần 1-2)
+
+Mục tiêu là thiết lập hạ tầng và cho phép người dùng đăng nhập.
+
+- **Tác vụ Backend (CDK/DevOps):**
+    - Viết stack CDK/IaC cho **Cognito** (User Pool, App Client).
+    - Viết stack CDK cho **DynamoDB** (bảng chính, chưa cần GSI).
+    - Viết stack CDK cho **S3** (Bucket `uploads`, `public`, `logs`) và cấu hình **OAC** (Origin Access Control).
+    - Triển khai **API Gateway** (HTTP API) và một Lambda "hello world" để kiểm thử.
+- **Tác vụ Frontend (Amplify):**
+    - Cấu hình **Amplify Hosting** và kết nối với repo GitHub (CI/CD).
+    - Tích hợp Amplify UI / Cognito SDK cho các trang: Đăng ký, Xác thực email, Đăng nhập, Quên mật khẩu.
+- **Kết quả (Milestone):**
+    - Developer có thể `git push` và FE tự động deploy.
+    - Người dùng có thể đăng ký/đăng nhập và nhận được JWT token.
+
+### Luồng Upload & Duyệt (Tuần 2-3)
+
+Mục tiêu là cho phép người dùng (đã đăng nhập) tải file lên và Admin duyệt file đó.
+
+- **Tác vụ Backend (CDK/Lambda):**
+    - Viết Lambda `createUploadUrl`:
+        - Xác thực JWT (phải đăng nhập).
+        - Tạo **Presigned PUT URL** trỏ đến thư mục `uploads/` trên S3.
+        - Ghi metadata vào DynamoDB (status: `PENDING`).
+    - Viết Lambda `approveBook`:
+        - Xác thực JWT (phải là Admin).
+        - Copy file từ `uploads/` sang `public/books/`.
+        - Cập nhật status trong DynamoDB (status: `APPROVED`).
+- **Tác vụ Frontend:**
+    - Xây dựng Form Upload (kéo thả, chọn file).
+    - Gọi API `createUploadUrl` để lấy URL.
+    - Thực hiện upload file (HTTP PUT) trực tiếp lên S3 Presigned URL.
+    - Xây dựng Giao diện Admin:
+        - Lấy danh sách sách có status `PENDING`.
+        - Có nút "Duyệt" (gọi API `approveBook`).
+
+### Luồng Đọc & Tìm kiếm (Tuần 3-4)
+
+Mục tiêu là cho phép người dùng đọc và tìm kiếm sách đã được duyệt.
+
+- **Tác vụ Backend (CDK/Lambda):**
+    - Viết Lambda `getReadUrl`:
+        - Xác thực JWT (phải đăng nhập).
+        - Kiểm tra xem sách có status `APPROVED` không.
+        - Tạo **Signed GET URL** (ngắn hạn) qua CloudFront trỏ đến file trong `public/books/`.
+    - Cập nhật CDK: Thêm **GSI (Global Secondary Index)** cho `title` và `author` vào bảng DynamoDB.
+    - Viết Lambda `searchBooks`: Query DynamoDB dựa trên GSI (không dùng Scan).
+- **Tác vụ Frontend:**
+    - Xây dựng Trang chủ: Hiển thị danh sách sách (từ API, không có URL).
+    - Xây dựng Thanh tìm kiếm (gọi API `searchBooks`).
+    - Xây dựng Giao diện Đọc sách (Reader):
+        - Khi bấm "Đọc", gọi API `getReadUrl`.
+        - Dùng URL nhận được để render file (ví dụ: dùng `react-pdf`).
+
+### Vận hành & Bảo mật (Tuần 5-6)
+
+Mục tiêu là "hóa cứng" hệ thống, làm cho nó an toàn và dễ giám sát.
+
+- **Tác vụ Backend (CDK/Lambda):**
+    - Thiết lập **S3 Event Notification** (cho `uploads/`).
+    - Viết Lambda `validateMimeType`: Trigger khi có file mới, đọc "magic bytes" để xác thực đúng là PDF/ePub. Nếu sai, cập nhật status: `REJECTED_INVALID_TYPE`.
+    - Viết Lambda `takedownBook` (API cho Admin) và `deleteUpload` (xóa file `PENDING` sau 72h).
+- **Tác vụ DevOps (AWS Console/CDK):**
+    - Thiết lập **AWS Budget Alerts** (cảnh báo khi chi phí vượt $X).
+    - Thiết lập **CloudWatch Alarms** (ví dụ: Lambda error rate > 5%).
+    - Rà soát lại **IAM** (đảm bảo "least-privilege"), **CORS** (chỉ cho phép domain của Amplify).
+
+## **6. Budget Estimation**
+
+You can find the budget estimation on the: [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=45ebafb3c3a0ff07b7c21970b2287f1a06f2a460)
+
+Dưới đây là ước tính chi phí hàng tháng **nghiêm ngặt** (giả định không áp dụng AWS Free Tier) tại quy mô MVP (100 người dùng).
+
+| # | AWS Service | Region | Monthly (USD) | Notes |
+| --- | --- | --- | --- | --- |
+| 0 | **Amazon CloudFront** | Asia Pacific (Singapore) | **0.86** | 10 GB data egress + 10 000 HTTPS requests |
+| 1 | **AWS Amplify** | Asia Pacific (Singapore) | **1.31** | 100 build min + 0.5 GB storage + 2 GB served |
+| 2 | **Amazon API Gateway** | Asia Pacific (Singapore) | **0.01** | ~10 000 HTTP API calls/tháng |
+| 3 | **AWS Lambda** | Asia Pacific (Singapore) | **0.00** | 128 MB RAM × 100 ms × 10 000 invokes |
+| 4 | **Amazon S3 (Standard)** | Asia Pacific (Singapore) | **0.05** | 2 GB object storage for books/images |
+| 5 | **Data Transfer** | Asia Pacific (Singapore) | **0.00** | Included in CloudFront cost |
+| 6 | **DynamoDB (On-Demand)** | Asia Pacific (Singapore) | **0.03** | Light metadata table (0.1 GB, few reads/writes) |
+| 7 | **Amazon Cognito** | Asia Pacific (Singapore) | **5.00** | 100 MAU, Advanced Security enabled |
+| 8 | **Amazon CloudWatch** | Asia Pacific (Singapore) | **1.64** | 5 metrics + 0.1 GB logs/tháng |
+| 9 | **Amazon Route 53** | Asia Pacific (Singapore) | **0.90** | 1 Hosted Zone + DNS queries |
+|  |  |  | **≈ 9.80 USD / month** | **No Free Tier applied** |
+
+### **Chi phí hạ tầng**
+
+Mô hình chi phí này cho thấy sự hiệu quả của kiến trúc serverless: chi phí tập trung chủ yếu vào **giá trị mang lại cho người dùng** (Cognito MAU) thay vì trả tiền cho "máy chủ chờ" (idle servers).
+
+---
+
+## **7. Đánh giá rủi ro**
+
+### **Ma trận rủi ro**
+
+| Rủi ro | Tác động | Chiến lược giảm thiểu |
+| --- | --- | --- |
+| Chi phí tăng khi user đột biến | Cao | Giới hạn MAU, cache metadata qua CloudFront |
+| Upload lạm dụng | Trung bình | Giới hạn ≤ 50MB/file, xóa auto sau 72h |
+| File loại giả mạo/độc hại | Trung bình | S3 Event → Lambda xác thực MIME (magic bytes) |
+| Giám sát quá tải | Thấp | CloudWatch alert, log 14 ngày |
+
+### **Chiến lược giảm thiểu**
+
+- **Chi phí:**
+    - Đặt **AWS Budget Alerts** cho CloudFront và Cognito.
+    - Nhận thức rằng **Signed URL** có TTL ngắn nên không cache công khai dài hạn; thay vào đó, **cache metadata/API response** (danh sách sách, chi tiết) trên CloudFront 3–5 phút để giảm tải API.
+    - Chỉ tạo Signed URL khi người dùng thực sự bấm đọc (on‑demand), không tạo sẵn cho cả danh sách.
+- **Tải lên:**
+    - Giới hạn kích thước file **≤ 50MB** cho MVP. (Có thể nâng lên 200MB khi cần, dùng multipart upload ở FE để tránh timeout.)
+    - Áp dụng **Rate Limit/Throttling** trên API Gateway cho các endpoint tạo Presigned URL.
+    - Thiết lập **S3 Lifecycle Policy** để tự động xóa file chưa duyệt ở `uploads/` sau 72h.
+    - Thêm **Server‑side Validation**: S3 Event Notifications → Lambda đọc **magic bytes** (vd. thư viện `file-type`) để xác thực đúng PDF/ePub; nếu sai, tự động xóa và ghi trạng thái `REJECTED_INVALID_TYPE` vào DynamoDB.
+- **Bản quyền (DMCA):**
+    - Lưu **Audit Log** trong DynamoDB: `uploaderID`, `uploadTimestamp`, `adminApproverID`, `approvalTimestamp` để phục vụ truy vết.
+    - Xây dựng **Takedown API** (chỉ Admin): cập nhật status `TAKEDOWN`; tùy chọn di chuyển object từ `public/books/` sang `quarantine/books/` (không xóa hẳn) để lưu vết.
+
+### **Kế hoạch ứng phó**
+
+Nếu chi phí tăng vượt ngân sách, có thể tạm thời giới hạn người dùng mới thông qua hệ thống mời để kiểm soát MAU Cognito và tối ưu hóa file.
+
+---
+
+## **8. Kết quả mong đợi**
+
+### **Cải tiến kỹ thuật:**
+
+- Đảm bảo **tốc độ truyền tải nhanh** và **bảo mật** nội dung (CDN + Signed URL).
+- Tạo ra một kiến trúc **Serverless tiêu chuẩn** trên AWS, dễ dàng mở rộng lên đến 50.000 người dùng mà không cần thay đổi kiến trúc cốt lõi.
+- Hệ thống **CI/CD hoàn toàn tự động** cho cả Frontend và Backend (CDK/Amplify).
+
+### **Giá trị lâu dài**
+
+- Thiết lập một **nền tảng dữ liệu tập trung** và có cấu trúc cho nội dung sách.
+- Cung cấp một **tài liệu tham khảo sống** về việc triển khai Serverless E2E.
+- Khả năng tích hợp các dịch vụ phân tích (như Amazon QuickSight) hoặc AI/ML trong tương lai.
+
+Hệ thống này chứng minh khả năng xây dựng nền tảng nội dung bảo mật, tiết kiệm chi phí và mở rộng dễ dàng bằng AWS Serverless — phù hợp triển khai thực tế cho nhóm nhỏ. Rẻ

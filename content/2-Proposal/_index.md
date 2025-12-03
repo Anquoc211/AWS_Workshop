@@ -1,115 +1,239 @@
 ---
 title: "Proposal"
-date: "2025-09-09T15:44:00+07:00"
+date: "2025-10-10T15:44:00+07:00"
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+# **Online Library – A Serverless Content Platform for Small Groups**
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
+### **1. Executive Summary**
+The **Online Library** project aims to build a **low-cost serverless platform** for storing and distributing content (PDF/ePub) for a small user group (initially **~100 users**, primarily students/labs needing controlled internal research-material sharing). The solution prioritizes security, content moderation (Admin Approval), and **transparent, linear operating costs** as it scales.
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+The architecture uses a fully **AWS Serverless** stack (Amplify, Cognito, API Gateway, Lambda, S3, CloudFront, DynamoDB).
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+Estimated cost for the MVP (excluding Free Tier) is **≈ $9.80/month**, with predictable scaling to 5,000–50,000 users.
 
-### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+---
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+### **2. Problem Statement**
+### **What’s the Problem?**
+Documents and books are scattered; there is no secure content delivery system with access control; the process of adding or moderating user-generated content (UGC) is slow and has high friction.
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+### **The Solution:**
+Build a serverless pipeline on AWS:
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+Users upload files via **Presigned PUT URL** to temporary S3; Admin approves → Lambda moves the file to a protected public folder; Readers access content via **Signed GET URL** (from CloudFront/CDN) to ensure speed and controlled access.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+### **Benefits and Return on Investment**
+- **Business value:** Centralized content; quality control through moderation; fast deployment with CI/CD.
+- **Technical benefits:** Very low operating cost (**≈ $9.80/month** for MVP); **scalable** serverless architecture; secured content access.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+---
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+### **3. Solution Architecture**
+#### **A. High level**
+![A) High level](/images/2-Proposal/Architect.jpeg)
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+#### **B. Request flow**
+![B) Request flow](/images/2-Proposal/Request_flow.jpeg)
 
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+### **AWS Services Used**
+| Service | Primary Role | Specific Tasks |
+| --- | --- | --- |
+| **Amplify Hosting** | CI/CD + FE Hosting | Build & Deploy Next.js, domain management |
+| **Cognito** | Authentication | Sign-up/Login, JWT issuance, refresh tokens |
+| **API Gateway** | API Entry Point | Receive requests, validate JWT, route to Lambda |
+| **Lambda** | Business Logic | Handle upload/approval, generate signed URLs, write metadata |
+| **S3** | Object Storage | Store original and approved files, served via CloudFront Signed URL |
+| **CloudFront** | CDN | Fast content delivery, blocks direct S3 access via OAC |
+| **DynamoDB** | Database | Store metadata (title, uploader, approval status) |
+| **Route 53** | DNS | Domain mapping to Amplify, API Gateway, CloudFront |
+| **CloudWatch** | Monitoring | Lambda logs, anomaly alerts |
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+### **Search**
+Simple search fields (titles, author) using DynamoDB GSIs.
 
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+### **Component Design**
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+- **User Upload:** Presigned PUT to S3 `uploads/`.
+- **Admin Approval:** Lambda copies file from `uploads/` → `public/books/` upon approval.
+- **Reader Security:** CloudFront **OAC** prevents direct S3 access; reading occurs only through **Signed URL** generated by Lambda.
 
-Total: $0.7/month, $8.40/12 months
+### **Search Architecture**
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+- **Simple Search:**
+    - Design **GSI** for `title` and `author` (example: `GSI1: PK=TITLE#{normalizedTitle}, SK=BOOK#{bookId}`; `GSI2: PK=AUTHOR#{normalizedAuthor}, SK=BOOK#{bookId}`).
+    - Add endpoint `GET /search?title=...&author=...` to query GSI instead of `Scan`.
 
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+![Search Architecture](/images/2-Proposal/SearchArchitecture.jpeg)
+### **Admin Authorization**
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+- Use **Cognito User Groups** with an `Admins` group.
+- Admin JWT contains `cognito:groups: ["Admins"]`.
+- Admin-specific Lambdas (example`approveBook`, `takedownBook`) check this claim and return `403 Forbidden` otherwise.
+- **JWT Authorizer** (API Gateway HTTP API) handles authentication, while authorization logic is inside Lambda.
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+---
 
-### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+### **4. Technical Implementation**
+
+### **Implementation Phases**
+
+1. **Design & IaC:** Use CDK to define all stacks (Cognito, DDB, S3, Amplify, Lambda, API).
+2. **Upload & Approval Flow:** Implement Presigned PUT, metadata (status= `PENDING`), Admin approval logic.
+3. **Reading Flow:** Implement Signed GET, FE reader stream via CloudFront.
+4. **Ops:** CloudWatch logs, budget alerts, IAM hardening.
+5. **Search:** Add GSI for `title`, `author`, implement `GET /search`.
+
+### **Technical Requirements**
+
+- Entire infrastructure defined using **CDK**.
+- API Gateway uses **HTTP API** for cost savings.
+- Lambda (Python) handles business logic & DynamoDB/S3.
+- S3 Bucket Policy must **deny public access** and allow only CloudFront OAC.
+
+---
+
+### **5. Timeline & Milestones**
+### **Project Timeline**
+
+### **Platform & Authentication (Week 1–2)**
+
+Objective: Set up infrastructure and allow user login.
+
+- **Backend Tasks (CDK/DevOps):**
+    - CDK/IaC stack for **Cognito**.
+    - CDK stack for **DynamoDB** (main table, no GSI yet).
+    - CDK stack for **S3** (`uploads`, `public`, `logs`) + **OAC**.
+    - Deploy **API Gateway** (HTTP API) + a test Lambda.
+- **Frontend Tasks (Amplify):**
+    - Configure **Amplify Hosting** + GitHub CI/CD.
+    - Integrate Amplify UI / Cognito SDK for: Sign-up, Email verification, Login, Forgot password.
+- **Milestone:**
+    - `git push` automatically deploys FE.
+    - User can sign-up/login and obtain JWT.
+
+
+### **Upload & Approval Flow (Week 2–3)**
+
+Objective: Allow authenticated users to upload files and Admins to approve them.
+
+- Backend (Lambda/CDK):
+    - Implement `createUploadUrl` Lambda:
+        - Validate JWT.
+        - Create **Presigned PUT URL** to `uploads/`.
+        - Write metadata (status=`PENDING`).
+    - Implement `approveBook`:
+        - Validate Admin role.
+        - Copy S3 file `uploads/` → `public/books/`.
+        - Update DynamoDB status (`APPROVED`).
+- Frontend:
+    - Upload form (drag & drop).
+    - Upload via Presigned PUT.
+    - Admin dashboard with list of `PENDING`, button “Approve”.
+
+---
+
+### **Reading & Search (Week 3–4)**
+
+Objective: Allow reading & searching approved books.
+
+- Backend:
+    - Implement `getReadUrl`: generate **Signed GET URL** (short TTL).
+    - Add **GSI** for `title`, `author`.
+    - Implement `searchBooks`.
+- Frontend:
+    - Homepage: book list.
+    - Search bar → API `searchBooks`.
+    - Reader screen using the Signed URL (e.g., via `react-pdf`).
+
+---
+
+### **Ops & Security (Week 5–6)**
+
+- Backend:
+    - **S3 Event Notification** for new uploads.
+    - Lambda `validateMimeType`: read magic bytes to verify PDF/ePub.
+    - Lambda `takedownBook` (Admin), `deleteUpload` (auto cleanup after 72h).
+- DevOps:
+    - **AWS Budget Alerts**, **CloudWatch Alarms**.
+    - IAM least-privilege + CORS tightening.
+
+---
+
+### **6. Budget Estimation**
+
+Budget comes from [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=45ebafb3c3a0ff07b7c21970b2287f1a06f2a460).
+
+Monthly cost (strict, no Free Tier, ~100 users): **≈ $9.80/month**.
+
+| # | AWS Service | Region | Monthly (USD) | Notes |
+| --- | --- | --- | --- | --- |
+| 0 | **Amazon CloudFront** | Asia Pacific (Singapore) | **0.86** | 10 GB data egress + 10 000 HTTPS requests |
+| 1 | **AWS Amplify** | Asia Pacific (Singapore) | **1.31** | 100 build min + 0.5 GB storage + 2 GB served |
+| 2 | **Amazon API Gateway** | Asia Pacific (Singapore) | **0.01** | ~10 000 HTTP API calls/tháng |
+| 3 | **AWS Lambda** | Asia Pacific (Singapore) | **0.00** | 128 MB RAM × 100 ms × 10 000 invokes |
+| 4 | **Amazon S3 (Standard)** | Asia Pacific (Singapore) | **0.05** | 2 GB object storage for books/images |
+| 5 | **Data Transfer** | Asia Pacific (Singapore) | **0.00** | Included in CloudFront cost |
+| 6 | **DynamoDB (On-Demand)** | Asia Pacific (Singapore) | **0.03** | Light metadata table (0.1 GB, few reads/writes) |
+| 7 | **Amazon Cognito** | Asia Pacific (Singapore) | **5.00** | 100 MAU, Advanced Security enabled |
+| 8 | **Amazon CloudWatch** | Asia Pacific (Singapore) | **1.64** | 5 metrics + 0.1 GB logs/tháng |
+| 9 | **Amazon Route 53** | Asia Pacific (Singapore) | **0.90** | 1 Hosted Zone + DNS queries |
+|  |  |  | **≈ 9.80 USD / month** | **No Free Tier applied** |
+
+### **Infrastructure Costs**
+This cost model demonstrates the efficiency of serverless architecture: costs are primarily centered on the value delivered to the user (Cognito MAU), rather than paying for 'idle servers'.
+
+---
+
+### **7. Risk Assessment**
+
+### **Risk Matrix**
+
+| Risk | Impact | Mitigation |
+| --- | --- | --- |
+| Cost spike due to sudden user growth | High | Limit MAU, cache metadata via CloudFront |
+| Abuse of uploads | Medium | Limit ≤ 50MB; auto-delete after 72h |
+| Fake/malicious file types | Medium | S3 Event → Lambda MIME validation |
+| Monitoring overload | Low | CloudWatch alerts, 14-day retention |
+
+---
+
+### **Mitigation Strategies**
+
+- **cost:**
+    - Set AWS Budget Alerts for CloudFront and Cognito.
+    - Be aware that Signed URLs have a short TTL and should not be cached publicly long-term; instead, cache metadata/API responses (book lists, details) on CloudFront for 3–5 minutes to reduce API load.
+    - Only generate Signed URLs when the user actually clicks to read (on-demand), do not pre-generate for the entire list.
+- **Upload:**
+    - Limit file size to ≤ 50MB for MVP. (Can be increased to 200MB if needed, use multipart upload on the FE to avoid timeouts.)
+    - Apply Rate Limit/Throttling on API Gateway for endpoints that create Presigned URLs.
+    - Set up an S3 Lifecycle Policy to automatically delete unapproved files in `uploads/` after 72h.
+    - Add Server-side Validation: S3 Event Notifications $\to$ Lambda reads magic bytes (e.g., `file-type` library) to verify correct PDF/ePub; if incorrect, automatically delete and write `REJECTED_INVALID_TYPE` status to DynamoDB.
+- **Copyright (DMCA):**
+    - Store **Audit Log** in DynamoDB: `uploaderID`, `uploadTimestamp`, `adminApproverID`, `approvalTimestamp` for traceability.
+    - Build a **Takedown API** (Admin only): update status to `TAKEDOWN`; optionally move the object from `public/books/` to `quarantine/books/` (do not delete completely) to preserve traces.
+
+### **Contingency Plans**
+
+If costs exceed budget, enable Invite-Only mode to cap Cognito MAU and reduce load.
+
+---
+
+### **8. Expected Outcomes**
+
+### **Technical Improvements**
+
+- **Fast and secure content delivery** (CDN + Signed URL).
+- **Standard AWS Serverless** architecture capable of scaling to 50,000 users without redesign.
+- Fully automated **CI/CD** for both frontend & backend.
+
+### **Long-term Value**
+
+- A **centralized content platform** for structured book data.
+- Continuous documentation of an end-to-end Serverless implementation.
+- Room for future analytics (QuickSight) or AI/ML features.
+
+This system proves the ability to build a platform that securely, cost-effectively, and scalably easy by AWS Serverless services - that suitable to apply for small groups or communities.
