@@ -6,41 +6,24 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+Trong suốt thời gian thực tập, em đã tham gia hai sự kiện AWS quan trọng giúp mở rộng kiến thức về cloud và AI, đồng thời tạo nhiều cơ hội kết nối chuyên môn.
 
-> Trong phần này, các bạn cần liệt kê và mô tả chi tiết các sự kiện (event) mà mình đã tham gia trong suốt quá trình thực tập hoặc làm việc. 
-> 
-> Mỗi sự kiện nên được trình bày theo định dạng Event 1, Event 2, Event 3…, kèm theo các thông tin:
-> * Tên sự kiện
-> * Thời gian tổ chức
-> * Địa điểm (nếu có)
-> * Vai trò của bạn trong sự kiện (người tham dự, hỗ trợ tổ chức, diễn giả, v.v.)
-> * Mô tả ngắn gọn nội dung và hoạt động chính trong sự kiện
-> * Kết quả hoặc giá trị đạt được (bài học, kỹ năng mới, đóng góp cho nhóm/dự án)
-> * Việc liệt kê này giúp thể hiện rõ sự tham gia thực tế của bạn, cũng như các kỹ năng mềm và kinh nghiệm bạn đã tích lũy qua từng sự kiện.
+### [Event 1: Vietnam Cloud Day 2025](4.1-Event1/)
 
+**Thời gian:** 18 tháng 9, 2025 lúc 9:00 sáng  
+**Địa điểm:** Văn phòng AWS Vietnam (Tầng 36, 2 Hai Triều, Q1, TPHCM)  
+**Vai trò:** Người tham dự
 
-Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là nhứng món quà và những khoảnh khắc rất tuyệt vời.
+**Tóm tắt:** Hội nghị AWS cả ngày với lãnh đạo chính phủ, điều hành AWS và các nhà đổi mới ngành. Gồm hai luồng chính: keynotes trực tiếp về chuyển đổi GenAI và lãnh đạo cấp cao, cùng các phiên thực hành về nền tảng AI/dữ liệu, lộ trình GenAI, bảo mật và chiến lược hiện đại hóa cloud.
 
-### [Event 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
+**Kết quả:** Thu được hiểu biết cấp doanh nghiệp về chiến lược áp dụng AI, học các dịch vụ AWS cho hạ tầng dữ liệu và triển khai GenAI, nắm vững framework bảo mật cho ứng dụng AI và hiện đại hóa hệ thống legacy.
 
-&emsp;**Thời gian:** 09:00 ngày 10/09/2025
+### [Event 2: AWS GenAI Builder Club](4.2-Event2/)
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+**Thời gian:** 3 tháng 10, 2025 lúc 2:00 chiều  
+**Địa điểm:** AWS Event Hall (L26 Tòa Bitexco, TPHCM)  
+**Vai trò:** Người tham dự
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+**Tóm tắt:** Workshop kỹ thuật về AI-Driven Development Lifecycle (AI-DLC) với demo trực tiếp Amazon Q Developer và Kiro IDE. Khám phá cách AI tạo sinh biến đổi kỹ thuật phần mềm từ kiến trúc đến triển khai, nhấn mạnh AI như đối tác hợp tác thay vì chỉ là trợ lý code.
 
-
-
-### [Event 2](4.2-Event2/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
-
-&emsp;**Thời gian:** 09:00 ngày 10/09/2025
-
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
-
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
-
+**Kết quả:** Học được tích hợp AI thực tế trong quy trình phát triển, có kinh nghiệm thực hành với Amazon Q Developer và Kiro, hiểu cách tận dụng AI cho năng suất đồng thời duy trì chất lượng code và giám sát của developer.

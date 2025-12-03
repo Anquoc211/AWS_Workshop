@@ -6,38 +6,24 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
+Throughout my internship, I attended two major AWS events that significantly expanded my cloud and AI knowledge while providing valuable networking opportunities.
 
-> In this section, you should list and describe in detail the events you have participated in during your internship or work experience.  
-> 
-> Each event should be presented in the format Event 1, Event 2, Event 3…, along with the following details:
-> * Event name
-> * Date and time
-> * Location (if applicable)
-> * Your role in the event (attendee, event support, speaker, etc.)
-> * A brief description of the event’s content and main activities
-> * Outcomes or value gained (lessons learned, new skills, contribution to the team/project)
-> * This listing helps demonstrate your actual participation as well as the soft skills and experience you have gained from each event.
+### [Event 1: Vietnam Cloud Day 2025](4.1-Event1/)
 
-During my internship, I participated in two events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
+**When:** September 18, 2025 at 9:00 AM  
+**Where:** AWS Vietnam Office (36F, 2 Hai Trieu St, District 1, HCMC)  
+**Role:** Attendee
 
-### [Event 1](4.1-Event1/)  
-&emsp;**Event Name:** AWS First Cloud Journey 2025 Kickoff 
+**Overview:** Full-day AWS conference featuring government leaders, AWS executives, and industry innovators. Covered two main streams: live keynotes on GenAI transformation and executive leadership, plus hands-on breakout sessions on AI/data foundations, GenAI roadmaps, security best practices, and cloud modernization strategies.
 
-&emsp;**Date & Time:** 09:30, October 6, 2025  
+**Impact:** Gained enterprise-level insights into AI adoption strategies, learned AWS services for data infrastructure and GenAI deployment, and understood security frameworks for AI applications and legacy system modernization.
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+### [Event 2: AWS GenAI Builder Club](4.2-Event2/)
 
-&emsp;**Role:** Attendee  
+**When:** October 3, 2025 at 2:00 PM  
+**Where:** AWS Event Hall (L26 Bitexco Tower, HCMC)  
+**Role:** Attendee
 
-&emsp;**Description:** The Event introduced the AWS First Cloud Journey program for Interns across multiple Universities, as well as introducing the FCJ mentors and former FCJ Champions from the past events.
+**Overview:** Technical workshop on AI-Driven Development Lifecycle (AI-DLC), featuring live demos of Amazon Q Developer and Kiro IDE. Explored how generative AI transforms software engineering from architecture through deployment, emphasizing AI as a collaborative partner rather than just a code assistant.
 
----
-
-### [Event 2](4.2-Event2/)  
-&emsp;**Event Name:** GenAI-powered App-DB Modernization workshop  
-
-&emsp;**Date & Time:** 09:00, August 13, 2025  
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
-
-&emsp;**Role:** Attendee  
+**Impact:** Learned practical AI integration in development workflows, gained hands-on experience with Amazon Q Developer and Kiro, and understood how to leverage AI for productivity while maintaining code quality and developer oversight.

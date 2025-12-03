@@ -1,126 +1,261 @@
 ---
-title: "Event 2"
-date: "2025-09-09T15:44:00+07:00"
-weight: 1
+title: "Event 2 - AWS GenAI Builder Club"
+date: "2025-10-03T14:00:00+07:00"
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+## AWS GenAI Builder Club: AI-Driven Development Lifecycle
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+**Date & Time:** Friday, October 3, 2025 | 2:00 PM VNT
 
-### Event Objectives
+**Venue:** AWS Event Hall, L26 Bitexco Tower, Ho Chi Minh City
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+**Led by:** Toan Huynh & My Nguyen
 
-### Speakers
+---
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+## Overview
 
-### Key Highlights
+This AWS GenAI Builder Club session introduced the AI-Driven Development Lifecycle (AI-DLC), demonstrating how AI can transform software engineering by serving as an intelligent collaborator throughout development. The session featured hands-on demonstrations of Amazon Q Developer and Kiro IDE, showcasing practical AI integration in modern development workflows.
 
-#### Identifying the drawbacks of legacy application architecture
+---
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+## Session Schedule
 
-#### Transitioning to modern application architecture – Microservices
+| Time | Topic | Presenter |
+|------|-------|-----------|
+| 14:00 - 14:15 | Welcome & Introduction | - |
+| 14:15 - 15:30 | AI-DLC Overview & Amazon Q Developer Demo | Toan Huynh |
+| 15:30 - 15:45 | Networking Break | - |
+| 15:45 - 16:30 | Kiro IDE Demonstration | My Nguyen |
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+---
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+## AI-Driven Development Lifecycle (AI-DLC)
 
-#### Domain-Driven Design (DDD)
+### Core Principles
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+**You Remain in Control**  
+AI serves as your assistant, not your replacement. Maintain decision-making authority over project direction and technical choices.
 
-#### Event-Driven Architecture
+**Bidirectional Collaboration**  
+AI should ask critical questions about requirements, architecture, and goals. The relationship is collaborative, with you guiding AI's suggestions.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+**Plan Before Code**  
+Create comprehensive plans before implementation. AI can help generate plans, but you must review and validate them.
 
-#### Compute Evolution
+### Development Workflow
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+**1. Project Planning**
+- Define clear requirements and scope
+- Generate initial plans with AI assistance
+- Review and refine until detailed and unambiguous
 
-#### Amazon Q Developer
+**2. User Story Creation**
+- Break down plans into user stories with acceptance criteria
+- Divide scope into manageable units
+- Assign stories to team members
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+**3. Technology Stack Definition**
+- Specify frameworks, tools, and technologies
+- Provide positive direction rather than constraints
+- Clear specifications yield better results
 
-### Key Takeaways
+**4. Requirements & Design**
+- Write precise, detailed requirements
+- Create specifications collaboratively with AI
+- Define data models, APIs, and system architecture
 
-#### Design Mindset
+**5. Implementation**
+- Build according to the plan
+- Use collaborative development approaches
+- Verify all AI-generated code as a team
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+**6. Testing & Deployment**
+- Progress through environments: Dev → QA → UAT → Production
+- Validate at each quality gate
+- Ensure functionality before release
 
-#### Technical Architecture
+### Success Factors
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+- **Plan First** - Don't expect AI to manage everything
+- **Review Regularly** - Validate AI outputs continuously
+- **Manage Actively** - Your value is in validation and oversight
+- **Ask Questions** - Ensure AI understands your context
+- **Use Templates** - Structure prompts with context and requirements
+- **Document Plans** - Export plans as files for reference
+- **Stay Respectful** - Maintain professional communication with AI
 
-#### Modernization Strategy
+---
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+## Amazon Q Developer
 
-### Applying to Work
+### Overview
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+Amazon Q Developer is an AI assistant that enhances the software development lifecycle across multiple platforms: AWS Console, IDEs, CLI, and DevSecOps tools.
 
-### Event Experience
+### Key Capabilities
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+**Code Enhancement**
+- Accelerates code generation
+- Improves code quality through intelligent suggestions
+- Optimizes complex codebases
+- Integrates seamlessly with existing workflows
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+**Automation**
+- Generates comprehensive documentation automatically
+- Creates unit tests with minimal effort
+- Reduces boilerplate code
+- Automates repetitive tasks
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+**Intelligent Support**
+- Leverages deep AWS service knowledge
+- Combines expertise across multiple domains
+- Strengthens security posture
+- Enhances developer productivity
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+### Best Practices
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+1. Provide detailed project context
+2. Use specific, example-rich prompts
+3. Review all suggestions before implementation
+4. Iterate and refine prompts as needed
+5. Leverage AWS service expertise
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+---
 
-#### Some event photos
-*Add your event photos here*  
+## Kiro IDE
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+### Overview
+
+Kiro is an agentic IDE from AWS that bridges rapid AI prototyping and production-ready development. Currently in public preview, it maintains professional standards while enhancing productivity.
+
+### Core Features
+
+**Spec-Driven Development**
+- Converts requirements into structured specifications
+- Generates user stories with acceptance criteria
+- Creates design documentation before coding
+- Plans implementation systematically
+
+**Agent Automation**
+- Triggers tasks automatically on events
+- Updates documentation on file saves
+- Generates tests on commits
+- Optimizes performance based on actions
+
+**Project Context**
+- Uses steering files (markdown) for guidelines
+- Understands project structure deeply
+- Applies coding standards consistently
+- Follows team best practices
+
+**Multi-File Intelligence**
+- Analyzes multiple files simultaneously
+- Understands functional goals across codebase
+- Aligns changes with project objectives
+- Goes beyond simple completion
+
+**VS Code Foundation**
+- Built on VS Code open source
+- Import settings and extensions
+- Familiar interface for developers
+- Seamless transition
+
+**Flexible Models**
+- Uses Claude Sonnet 4 by default
+- Auto mode combines multiple models
+- Balance quality and cost
+- Adapt to different tasks
+
+### Advantages
+
+**Transparency & Control**
+- Start with specifications
+- Review before implementation
+- Reduce misaligned code
+- Maintain clear traceability
+
+**Automation**
+- Auto-generate documentation
+- Create unit tests automatically
+- Update information systematically
+- Focus on high-value work
+
+**Security**
+- Most operations run locally
+- Data sent only with permission
+- Control sensitive information
+
+**Extensibility**
+- Integrate external tools via MCP
+- Support multiple AI models
+- Not locked to single environment
+- Adapt to team workflows
+
+### Considerations
+
+- Currently in public preview
+- May struggle with very complex projects
+- Requires developer supervision
+- Expected future pricing tiers (Free/Pro/Pro+)
+
+### When to Use
+
+- Need spec-driven development
+- Want professional, structured AI workflow
+- Building rapid prototypes for production
+- Require automated documentation and testing
+
+---
+
+## Common Pitfalls & Solutions
+
+**Over-Reliance on AI**  
+*Solution:* Plan first, review regularly. AI enhances, not replaces developer judgment.
+
+**High Error Rates**  
+*Solution:* Implement review cycles. Validate all AI-generated code.
+
+**Vague Requirements**  
+*Solution:* Write precise requirements. Create detailed specifications collaboratively.
+
+**Negative Instructions**  
+*Solution:* Use positive, specific direction. Tell AI what to do, not what to avoid.
+
+**Missing Context**  
+*Solution:* Create steering files. Provide detailed context. Ask critical questions.
+
+**AI as Manager**  
+*Solution:* You manage the project. Your value is in validation and oversight.
+
+---
+
+## Key Takeaways
+
+- **Maintain Control:** You are the manager; AI is your assistant
+- **Plan Strategically:** Create comprehensive plans before coding
+- **Collaborate Effectively:** AI should question and collaborate, not just execute
+- **Specify Clearly:** Precise requirements yield better AI outputs
+- **Review Continuously:** Validate AI suggestions regularly
+- **Focus on Value:** Your expertise matters in validation and architecture
+- **Structure Prompts:** Use templates with context and requirements
+- **Document Thoroughly:** Export plans as living reference documents
+- **Direct Positively:** Positive instructions work better than constraints
+- **Practice Actively:** Hands-on experience reveals capabilities and limits
+
+---
+
+## Tools Covered
+
+- **Amazon Q Developer** - AI-powered development assistant
+- **Kiro IDE** - Spec-driven development environment
+- **MCP (Model Context Protocol)** - Tool integration framework
+
+---
+
+## Conclusion
+
+The AI-Driven Development Lifecycle represents a paradigm shift where AI and developers collaborate as partners. Success requires clear planning, continuous review, precise requirements, and maintaining developer control. Amazon Q Developer and Kiro IDE enable this workflow, working best when developers understand their role as project managers and code validators while leveraging AI for enhanced productivity.
