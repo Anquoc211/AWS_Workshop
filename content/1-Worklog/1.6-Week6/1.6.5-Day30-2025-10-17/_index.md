@@ -5,7 +5,7 @@ chapter: false
 pre: "<b> 1.6.5. </b>"
 ---
 
-**Date:** 2025-10-17 (Thứ Sáu)  
+**Date:** 2025-10-17   
 **Status:** "Done"  
 
 ---
@@ -167,4 +167,4 @@ AWS Database Migration Service
 
 **Tổng số labs hoàn thành:** 25+ labs
 
-**Tiếp theo:** Tuần 7-8 sẽ bắt đầu từ ngày 20/10/2025 (Thứ Hai)
+**Tiếp theo:** Tuần 7-8 sẽ bắt đầu từ ngày 20/10/2025 

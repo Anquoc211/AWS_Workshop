@@ -5,7 +5,7 @@ chapter: false
 pre: "<b> 1.3.3. </b>"
 ---
 
-**Date:** 2025-09-24 (Thứ Tư)  
+**Date:** 2025-09-24   
 **Status:** "Done"  
 
 ---

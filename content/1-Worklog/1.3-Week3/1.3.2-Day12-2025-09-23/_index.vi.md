@@ -5,7 +5,7 @@ chapter: false
 pre: "<b> 1.3.2. </b>"
 ---
 
-**Ngày:** 2025-09-23 (Thứ Ba)  
+**Ngày:** 2025-09-23   
 **Trạng thái:** "Hoàn thành"  
 
 ---
