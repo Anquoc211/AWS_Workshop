@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-# Module 6: Deployment & Operations
-
 ## Overview
 
 In this final module, you'll set up production deployment with CI/CD, implement monitoring and alerting, optimize costs, and apply security hardening to the Online Library platform. You'll also learn operational best practices for running serverless applications at scale.

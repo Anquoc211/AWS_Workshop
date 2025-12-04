@@ -6,35 +6,62 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+Trong thời gian thực tập tại **[Tên công ty/tổ chức]** từ **[ngày bắt đầu]** đến **[ngày kết thúc]**, em đã có cơ hội học hỏi, thực hành và ứng dụng kiến thức đã học vào môi trường thực tế. Em tham gia **[mô tả ngắn gọn dự án/công việc]** và cải thiện kỹ năng về **[liệt kê kỹ năng: lập trình, phân tích, báo cáo, giao tiếp, v.v.]**.
 
-Trong suốt thời gian thực tập tại **[Tên công ty/tổ chức]** từ **[ngày bắt đầu]** đến **[ngày kết thúc]**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.  
-Tôi đã tham gia **[mô tả ngắn gọn dự án hoặc công việc chính]**, qua đó cải thiện kỹ năng **[liệt kê kỹ năng: lập trình, phân tích, viết báo cáo, giao tiếp…]**.  
+Về thái độ làm việc, em luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ quy định và tích cực tương tác với đồng nghiệp.
 
-Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy, và tích cực trao đổi với đồng nghiệp để nâng cao hiệu quả công việc.
+Để có cái nhìn khách quan về giai đoạn thực tập, em tự đánh giá dựa trên các tiêu chí sau:
 
-Để phản ánh một cách khách quan quá trình thực tập, tôi xin tự đánh giá bản thân dựa trên các tiêu chí dưới đây:
+| STT | Tiêu chí | Mô tả | Tốt | Khá | TB |
+| --- | --- | --- | --- | --- | --- |
+| 1 | **Kiến thức & kỹ năng chuyên môn** | Hiểu biết lĩnh vực, vận dụng thực tế, thành thạo công cụ, chất lượng công việc | | | ✔️ |
+| 2 | **Khả năng học hỏi** | Tiếp thu kiến thức mới và học nhanh | | ✔️ | |
+| 3 | **Tính chủ động** | Chủ động tìm kiếm việc, không chờ chỉ dẫn | | | ✔️ |
+| 4 | **Ý thức trách nhiệm** | Hoàn thành đúng hạn, đảm bảo chất lượng | ✔️ | | |
+| 5 | **Tính kỷ luật** | Tuân thủ lịch trình, quy tắc làm việc | ✔️ | | |
+| 6 | **Tinh thần cầu tiến** | Sẵn sàng nhận phản hồi và cải thiện | | ✔️ | |
+| 7 | **Giao tiếp** | Trình bày ý tưởng và báo cáo rõ ràng | | ✔️ | |
+| 8 | **Làm việc nhóm** | Hiệu quả với đồng nghiệp, tham gia nhóm | ✔️ | | |
+| 9 | **Thái độ nghề nghiệp** | Tôn trọng đồng nghiệp, đối tác, môi trường | ✔️ | | |
+| 10 | **Kỹ năng giải quyết vấn đề** | Nhận diện, đề xuất giải pháp, sáng tạo | | ✔️ | |
+| 11 | **Đóng góp cho dự án/nhóm** | Hiệu quả, ý tưởng mới, được ghi nhận | | ✔️ | |
+| 12 | **Tổng thể** | Đánh giá chung giai đoạn thực tập | | ✔️ | |
 
+### Các điểm cần cải thiện
 
-| STT | Tiêu chí                            | Mô tả                                                                                            | Tốt | Khá | Trung bình |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --- | --- | ---------- |
-| 1   | **Kiến thức và kỹ năng chuyên môn** | Hiểu biết về ngành, áp dụng kiến thức vào thực tế, kỹ năng sử dụng công cụ, chất lượng công việc |   | ☐   | ☐          |
-| 2   | **Khả năng học hỏi**                | Tiếp thu kiến thức mới, học hỏi nhanh                                                            | ☐   |   | ☐          |
-| 3   | **Chủ động**                        | Tự tìm hiểu, nhận nhiệm vụ mà không chờ chỉ dẫn                                                  |   | ☐   | ☐          |
-| 4   | **Tinh thần trách nhiệm**           | Hoàn thành công việc đúng hạn, đảm bảo chất lượng                                                |   | ☐   | ☐          |
-| 5   | **Kỷ luật**                         | Tuân thủ giờ giấc, nội quy, quy trình làm việc                                                   | ☐   | ☐   |          |
-| 6   | **Tính cầu tiến**                   | Sẵn sàng nhận feedback và cải thiện bản thân                                                     | ☐   |   | ☐          |
-| 7   | **Giao tiếp**                       | Trình bày ý tưởng, báo cáo công việc rõ ràng                                                     | ☐   |   | ☐          |
-| 8   | **Hợp tác nhóm**                    | Làm việc hiệu quả với đồng nghiệp, tham gia nhóm                                                 |   | ☐   | ☐          |
-| 9   | **Ứng xử chuyên nghiệp**            | Tôn trọng đồng nghiệp, đối tác, môi trường làm việc                                              |   | ☐   | ☐          |
-| 10  | **Tư duy giải quyết vấn đề**        | Nhận diện vấn đề, đề xuất giải pháp, sáng tạo                                                    | ☐   |   | ☐          |
-| 11  | **Đóng góp vào dự án/tổ chức**      | Hiệu quả công việc, sáng kiến cải tiến, ghi nhận từ team                                         |   | ☐   | ☐          |
-| 12  | **Tổng thể**                        | Đánh giá chung về toàn bộ quá trình thực tập                                                     |   | ☐   | ☐          |
+**Kỹ năng chuyên môn (TB):**
+- Tăng cường chuyên môn qua khóa học và chứng chỉ
+- Áp dụng kiến thức vào tình huống phức tạp hơn
 
-### Cần cải thiện
+**Tính chủ động (TB):**
+- Chủ động hơn trong xác định cơ hội
+- Tình nguyện đảm nhận thêm trách nhiệm
 
-* Nâng cao tính kỹ luật, chấp hành nghiêm chỉnh nội quy của công ty hoặc bất kỳ trong một tổ chức nào
-* Cải thiện trong cách tư duy giải quyết vấn đề
-* Học cách giao tiếp tốt hơn trong giao tiếp hằng ngày và trong công việc, xử lý tình huống
+**Khả năng học (Khá):**
+- Phát triển chiến lược học hiệu quả
+- Tìm kiếm dự án thách thức
+
+**Tinh thần cầu tiến (Khá):**
+- Cởi mở với phản hồi xây dựng
+- Tìm kiếm góp ý từ đồng nghiệp
+
+**Giao tiếp (Khá):**
+- Nâng cao độ rõ ràng khi trình bày
+- Cải thiện kỹ năng viết tài liệu
+
+**Giải quyết vấn đề (Khá):**
+- Tăng cường tư duy phân tích
+- Phát triển cách tiếp cận sáng tạo
+
+**Đóng góp nhóm (Khá):**
+- Tăng chất lượng deliverable
+- Đóng góp ý tưởng sáng tạo hơn
+
+### Kế hoạch hành động
+
+Để cải thiện, em cam kết:
+1. Dành thời gian hàng tuần phát triển kỹ năng
+2. Tìm kiếm cố vấn từ đồng nghiệp senior
+3. Đặt mục tiêu cụ thể, đo lường được
+4. Thường xuyên phản ánh và điều chỉnh
+5. Tích cực tham gia thảo luận với giải pháp

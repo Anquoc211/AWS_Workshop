@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-# Module 5: Tìm kiếm & Khám phá
-
 ## Tổng quan
 
 Trong module này, bạn sẽ triển khai chức năng tìm kiếm cho Thư viện Online sử dụng DynamoDB Global Secondary Indexes (GSI). Bạn sẽ xây dựng các truy vấn hiệu quả cho tìm kiếm theo tiêu đề và tác giả, triển khai phân trang, và tạo giao diện tìm kiếm thân thiện với người dùng có bộ lọc.

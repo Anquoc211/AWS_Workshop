@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-# Module 5: Search & Discovery
-
 ## Overview
 
 In this module, you'll implement search functionality for the Online Library using DynamoDB Global Secondary Indexes (GSI). You'll build efficient queries for title and author search, implement pagination, and create a user-friendly search interface with filters.

@@ -6,8 +6,6 @@ chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-# Module 6: Triển khai & Vận hành
-
 ## Tổng quan
 
 Trong module cuối cùng này, bạn sẽ thiết lập triển khai production với CI/CD, triển khai giám sát và cảnh báo, tối ưu chi phí, và áp dụng tăng cường bảo mật cho nền tảng Thư viện Online. Bạn cũng sẽ học các thực hành vận hành tốt nhất để chạy ứng dụng serverless ở quy mô lớn.
